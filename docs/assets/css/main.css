@@ -1,28 +1,31 @@
 /* global fonts */
 :root {
-  --default-font: "Ubuntu Mono", system-ui, -apple-system, Arial, sans-serif;
-  --heading-font: "Ubuntu Mono", system-ui;
+  --default-font: "Ubuntu", system-ui, -apple-system, Arial, sans-serif;
+  --heading-font: var(--default-font);
   --nav-font: var(--default-font);
 }
 
 /* global color variables */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #323330; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #323330; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #F0DB4F; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --color-white: #ffffff;
+  --color-primary: #323330;
+  --color-secondary: #F0DB4F;
+  --background-color: var(--color-white);
+  --default-color: var(--color-primary);
+  --heading-color: var(--color-primary);
+  --accent-color: var(--color-primary);
+  --surface-color: var(--color-white);
+  --contrast-color: var(--color-white);
 }
 
 /* nav menu colors */
 :root {
-  --nav-color: #323330;  /* The default color of the main navmenu links */
-  --nav-hover-color: #F0DB4F; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #F0DB4F; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #323330; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #F0DB4F; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: var(--color-secondary);
+  --nav-hover-color: var(--color-primary);
+  --nav-mobile-background-color: var(--color-primary);
+  --nav-dropdown-background-color: var(--color-white);
+  --nav-dropdown-color: var(--color-secondary);
+  --nav-dropdown-hover-color: var(--color-primary);
 }
 
 /* color presets */
@@ -40,13 +43,14 @@
 }
 
 .accent-background {
-  --background-color: #F0DB4F;
-  --default-color: #ffffff;
-  --heading-color: #ffffff;
-  --accent-color: #ffffff;
-  --surface-color: #F0DB4F;
-  --contrast-color: #ffffff;
+  --background-color: var(--color-primary);
+  --default-color: var(--color-white);
+  --heading-color: var(--color-white);
+  --accent-color: var(--color-white);
+  --surface-color: var(--color-primary);
+  --contrast-color: var(--color-white);
 }
+
 
 /* Smooth scroll */
 :root {
@@ -88,7 +92,7 @@ h6 {
 .header {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 10px 0;
+  padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -96,7 +100,7 @@ h6 {
   line-height: 1;
 }
 .header .logo img {
-  max-height: 24px;
+  max-height: 28px;
   margin-right: 8px;
 }
 .header .logo h1 {
@@ -394,7 +398,6 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 120px 0 60px 0; */
   overflow: hidden;
 }
 .hero:before {
@@ -421,6 +424,20 @@ section,
   margin: 0;
   font-size: 46px;
   line-height: 1.2;
+  color: var(--color-secondary);
+}
+.hero .badge {
+  font-size: 14px;
+  display: inline-block;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: 4px;
+  padding: 4px 9px;
+  bottom: 5px;
 }
 .hero .subheading {
   font-size: 12px;
@@ -452,7 +469,7 @@ section,
 .hero p {
   margin: 10px 0 0 0;
   font-size: 22px;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  color: var(--color-secondary);
 }
 
 @media (max-width: 992px) {
@@ -465,23 +482,6 @@ section,
     font-size: 18px;
     line-height: 24px;
   }
-}
-
-.hero .btn-get-started {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  display: inline-block;
-  padding: 14px 50px;
-  border-radius: 5px;
-  transition: 0.5s;
-  margin-top: 30px;
-}
-
-.hero .btn-get-started:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 15%);
 }
 
 .hero .icon-box {
@@ -585,130 +585,80 @@ section,
 }
 
 /*===========================================
-# Services Section
+# Bootstrap overwrites
 ============================================*/
-.services .service-item {
-  background-color: var(--surface-color);
-  box-shadow: 0px 5px 90px 0px rgba(0, 0, 0, 0.1);
-  height: 100%;
-  padding: 60px 30px;
-  text-align: center;
-  transition: 0.3s;
-  border-radius: 5px;
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-secondary);
 }
-
-.services .service-item .icon {
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: ease-in-out 0.3s;
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn:first-child:active {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(var(--color-primary), 0.5);
+}
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-primary);
+  opacity: 0.65;
+}
+.btn svg {
   position: relative;
+  top: -2px;
+  margin-right: 4px;
+}
+.side-nav-wrapper ul.nav.nav-list {
+  display: block;
+}
+.side-nav-wrapper ul.nav.nav-list li a {
+  text-align: left;
 }
 
-.services .service-item .icon i {
-  font-size: 36px;
-  transition: 0.5s;
-  position: relative;
+.side-nav-wrapper ul.nav.nav-list li > a {
+  display: block;
+  color: var(--color-primary);
+  padding: 5px 10px;
+  box-shadow: -1px 0px 0 -0px var(--color-primary);
 }
 
-.services .service-item .icon svg {
-  position: absolute;
-  top: 0;
-  left: 0;
+.side-nav-wrapper ul.nav.nav-list li > a:hover {
+  box-shadow: -7px 0px 0 -5px var(--color-primary); /* Use --contrast-color for the hover effect */
+  background: transparent;
 }
 
-.services .service-item .icon svg path {
-  transition: 0.5s;
-  fill: color-mix(in srgb, var(--default-color), transparent 95%);
+.side-nav-wrapper ul.nav.nav-list li li a {
+  color: var(--default-color); /* Use --default-color for the text color */
+  padding: 0px 20px;
+  box-shadow: -1px 0px 0 -0px var(--surface-color); /* Use --surface-color for the box-shadow */
 }
 
-.services .service-item h3 {
-  font-weight: 700;
-  margin: 10px 0 15px 0;
-  font-size: 22px;
+.side-nav-wrapper ul.nav.nav-list li li:last-child a {
+  margin-bottom: 5px;
 }
 
-.services .service-item p {
-  line-height: 24px;
-  font-size: 14px;
-  margin-bottom: 0;
+.side-nav-wrapper ul.nav.nav-list li.active > a {
+  color: var(--accent-color); /* Use --accent-color for the active link color */
+  font-weight: bold;
+  box-shadow: -7px 0px 0 -5px var(--accent-color); /* Use --accent-color for the box-shadow */
 }
 
-.services .service-item:hover {
-  box-shadow: 0px 5px 35px 0px rgba(0, 0, 0, 0.1);
+.side-nav-wrapper ul.nav.nav-list li ul {
+  display: none;
 }
 
-.services .service-item.item-cyan i {
-  color: #0dcaf0;
+.side-nav-wrapper ul.nav.nav-list li.active ul {
+  display: block;
 }
 
-.services .service-item.item-cyan:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-cyan:hover .icon path {
-  fill: #0dcaf0;
-}
-
-.services .service-item.item-orange i {
-  color: #fd7e14;
-}
-
-.services .service-item.item-orange:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-orange:hover .icon path {
-  fill: #fd7e14;
-}
-
-.services .service-item.item-teal i {
-  color: #20c997;
-}
-
-.services .service-item.item-teal:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-teal:hover .icon path {
-  fill: #20c997;
-}
-
-.services .service-item.item-red i {
-  color: #df1529;
-}
-
-.services .service-item.item-red:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-red:hover .icon path {
-  fill: #df1529;
-}
-
-.services .service-item.item-indigo i {
-  color: #6610f2;
-}
-
-.services .service-item.item-indigo:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-indigo:hover .icon path {
-  fill: #6610f2;
-}
-
-.services .service-item.item-pink i {
-  color: #f3268c;
-}
-
-.services .service-item.item-pink:hover .icon i {
-  color: #fff;
-}
-
-.services .service-item.item-pink:hover .icon path {
-  fill: #f3268c;
+.side-nav-wrapper ul.nav.nav-list li.no-b-l a {
+  box-shadow: none;
 }
