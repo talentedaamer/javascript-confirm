@@ -595,7 +595,8 @@ section,
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
-.btn:first-child:active {
+.btn:first-child:active,
+:not(.btn-check)+.btn:active{
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
   color: var(--color-primary);
@@ -615,6 +616,15 @@ section,
   position: relative;
   top: -2px;
   margin-right: 4px;
+}
+.side-nav-wrapper {
+  padding-left: 2px;
+}
+.side-nav-wrapper.nav-sticky {
+  background-color: var(--color-white);
+  position: fixed;
+  top: 20px;
+  width: 260px;
 }
 .side-nav-wrapper ul.nav.nav-list {
   display: block;

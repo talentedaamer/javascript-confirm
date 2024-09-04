@@ -118,4 +118,17 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  const sideNavWrapper = document.getElementById('side-nav-wrapper');
+  const stickyOffset = sideNavWrapper.offsetTop;
+
+  function sideNavScrollSpy() {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition >= stickyOffset) {
+      sideNavWrapper.classList.add('nav-sticky');
+    } else {
+      sideNavWrapper.classList.remove('nav-sticky');
+    }
+  }
+  document.addEventListener('scroll', sideNavScrollSpy);
 })();

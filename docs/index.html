@@ -22,6 +22,8 @@
 
   <!-- Plugins CSS Files -->
   <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+  <script src="../dist/javascript-confirm.min.js"></script>
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -30,7 +32,7 @@
 <body class="index-page">
 
   <header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+    <div class="container position-relative d-flex align-items-center">
 
       <a href="#" class="logo d-flex align-items-center me-auto">
         <img src="assets/images/logo-javascript-confirm.svg" alt="">
@@ -96,24 +98,40 @@
                 <!-- for issues -->
                 <!-- https://github.com/talentedaamer/javascript-confirm/issues -->
                  <!-- <a class="btn btn-primary" href="#">Post issues here</a>? -->
+                <a id="demo-01" class="btn btn-primary" href="#">Demo</a>
+                <script>
+                  document.getElementById("demo-01").javascriptConfirm({
+                    // title: "title",
+                    // message: "message...",
+                    // width: 300,
+                    confirmText: "Accept",
+                    cancelText: "Deny",
+                    onConfirm: function() {
+                        console.log('Confirmed!');
+                    },
+                    onCancel: function() {
+                        console.log('Cancelled!');
+                    }
+                  });
+                </script>
               </section>
 
               <section id="getting-started" class="section">
                 <h2>Getting Started</h2>
                 <p>To get started with JavaScript Confirm, follow these steps:</p>
                 <ol>
-                    <li><strong>Include the Library</strong>: Add the <code>javascript-confirm.js</code> file to your project.</li>
-                    <li><strong>Include Styles</strong>: Make sure to include <code>javascript-confirm.css</code> in your project for the default styles.</li>
+                    <li><strong>Include Library js</strong>: Add the <code>javascript-confirm.min.js</code> file to your project.</li>
+                    <li><strong>Include Library css</strong>: Make sure to include <code>javascript-confirm.min.css</code> in your project for the default styles.</li>
                 </ol>
               </section>
 
               <section id="installation" class="section">
                 <h2>Installation</h2>
                 <p>You can install JavaScript Confirm via npm:</p>
-                <pre><code>npm install javascript-confirm</code></pre>
+                <input type="text" class="form-control" value="npm install javascript-confirm" disabled>
                 <p>Or, if you prefer, you can include it directly in your project using a script tag:</p>
-                <pre><code>&lt;script src="path/to/javascript-confirm.js"&gt;&lt;/script&gt;</pre>
-                <pre>&lt;link rel="stylesheet" href="path/to/javascript-confirm.css"&gt;</code></pre>
+                <input type="text" class="form-control" value='&lt;script src="path/to/javascript-confirm.js"&gt;&lt;/script&gt;' disabled>
+                <input type="text" class="form-control" value='&lt;link rel="stylesheet" href="path/to/javascript-confirm.css"&gt;' disabled>
               </section>
 
               <h2>Usage</h2>
