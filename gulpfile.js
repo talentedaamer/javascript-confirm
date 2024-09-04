@@ -14,7 +14,7 @@ const paths = {
 };
 
 /**
- * task to minify js
+ * Task to minify JS and save to two locations
  */
 function minifyJs() {
     return gulp.src(paths.js)
@@ -22,8 +22,11 @@ function minifyJs() {
         .pipe(uglify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(paths.dest));
+        .pipe(gulp.dest(paths.dest))
+        .pipe(gulp.dest('docs/dist'));
 }
+
+
 
 /**
  * task to minify css
@@ -34,7 +37,8 @@ function minifyCss() {
         .pipe(cleanCSS())
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(paths.dest));
+        .pipe(gulp.dest(paths.dest))
+        .pipe(gulp.dest('docs/dist'));
 }
 
 /**
