@@ -23,7 +23,7 @@ function minifyJs() {
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.dest))
-        .pipe(gulp.dest('docs/dist'));
+        // .pipe(gulp.dest('docs/dist'));
 }
 
 
@@ -38,7 +38,7 @@ function minifyCss() {
         .pipe(rename({ suffix: '.min' }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(paths.dest))
-        .pipe(gulp.dest('docs/dist'));
+        // .pipe(gulp.dest('docs/dist'));
 }
 
 /**

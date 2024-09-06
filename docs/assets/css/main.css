@@ -356,16 +356,7 @@ section,
   color: var(--default-color);
   background-color: var(--background-color);
   padding: 20px 0;
-  scroll-margin-top: 40px;
   overflow: clip;
-}
-
-@media (max-width: 1199px) {
-
-  section,
-  .section {
-    scroll-margin-top: 16px;
-  }
 }
 
 /*===========================================
@@ -468,7 +459,7 @@ section,
 }
 .hero p {
   margin: 10px 0 0 0;
-  font-size: 22px;
+  font-size: 20px;
   color: var(--color-secondary);
 }
 
