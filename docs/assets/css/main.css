@@ -1,6 +1,7 @@
 /* global fonts */
 :root {
   --default-font: "Ubuntu", system-ui, -apple-system, Arial, sans-serif;
+  --coding-font: "Ubuntu Mono", system-ui, -apple-system, Arial, sans-serif;
   --heading-font: var(--default-font);
   --nav-font: var(--default-font);
 }
@@ -83,6 +84,14 @@ h5,
 h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
+  font-weight: 700;
+}
+
+pre,
+code {
+  font-family: var(--coding-font);
+}
+.table code {
   font-weight: 700;
 }
 
@@ -608,6 +617,8 @@ section,
   top: -2px;
   margin-right: 4px;
 }
+/* button small */
+
 .side-nav-wrapper {
   padding-left: 2px;
 }

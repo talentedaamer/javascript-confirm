@@ -16,7 +16,7 @@
         // AMD. Register as an anonymous module.
         define([], factory);
     } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS, but only CommonJS-like environments that support module.exports, like Node.
+        // Node. Expose the factory function for CommonJS-like environments.
         module.exports = factory();
     } else {
         // Browser globals (root is window)
@@ -24,26 +24,29 @@
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
-    // Custom confirmation dialog for the plugin
-    // Extend the Element prototype to add the javascriptConfirm method
-    Element.prototype.javascriptConfirm = function(options, message) {
+    function javascriptConfirm(element, options) {
+        /**
+         * Check if element is provided and is an instance of HTMLElement
+         */
+        if (!(element instanceof HTMLElement)) {
+            console.error('Invalid element provided. Please pass a valid HTML element. e.g document.getElementById("dom_element")');
+            return;
+        }
+
+        /**
+         * If options is a string, or not valid object
+         * log error to the console and return
+         */
+        if (typeof options === 'string') {
+            console.error('Invalid options object. Please provide valid options object.');
+            return;
+        }
+
         /**
          * If options is undefined, initialize it as an empty object
          * this is to avoid errors from trying to access properties of undefined
          */
         if (typeof options === 'undefined') options = {};
-
-        /**
-         * If options is a string, convert it into an options object
-         * first param will be title and second will be message.
-         * in case .javascriptConfirm("string 1", "string 2") is passed
-         */
-        if (typeof options === 'string') {
-            options = {
-                title: options,
-                message: message || ""
-            };
-        }
 
         /**
          * handle width option if its number
@@ -69,7 +72,7 @@
             onCancel: function() {},
             cancelOnBackdropClick: false,
             cancelOnEscClick: false,
-            width: '250px',
+            width: '300px',
         }, options);
 
         /**
@@ -77,7 +80,7 @@
          * Handle click of the element. Prevents default
          * creates and opens the created dialog
          */
-        this.addEventListener('click', function(e) {
+        element.addEventListener('click', function(e) {
             e.preventDefault();
 
             /**
@@ -97,7 +100,7 @@
             backdrop.style.width            = '100%';
             backdrop.style.height           = '100%';
             backdrop.style.backgroundColor  = 'rgba(0, 0, 0, 0.3)';
-            backdrop.style.zIndex           = 999;
+            backdrop.style.zIndex           = '999';
 
             /**
              * Create the confirmation dialog
@@ -116,7 +119,7 @@
             confirmBox.style.transform      = 'translate(-50%, -50%)';
             confirmBox.style.background     = '#fff';
             confirmBox.style.padding        = '15px';
-            // confirmBox.style.border         = '1px solid #ddd';
+            // confirmBox.style.border      = '1px solid #ddd';
             confirmBox.style.zIndex         = 1000;
             confirmBox.style.borderRadius   = '5px';
             confirmBox.style.boxShadow      = '0 2px 6px rgba(0, 0, 0, 0.2)';
@@ -132,7 +135,7 @@
              * Action buttons wrap this will wrap
              * confirm and cancel buttons
              */
-            var actionBox = document.createElement('div');
+            var actionBox= document.createElement('div');
             actionBox.className         = 'jc-actions-wrap';
             actionBox.style.textAlign   = 'right';
 
@@ -170,8 +173,8 @@
              * applyButtonStyles apply basic button styles
              */
             var confirmAction = document.createElement('button');
-            confirmAction.className = settings.confirmClass;
-            confirmAction.textContent = settings.confirmText;
+            confirmAction.className         = settings.confirmClass;
+            confirmAction.textContent       = settings.confirmText;
             confirmAction.style.marginRight = '6px';
             applyBtnStyles(confirmAction);
 
@@ -181,8 +184,8 @@
              * applyButtonStyles apply basic button styles
              */
             var cancelAction = document.createElement('button');
-            cancelAction.className = settings.cancelClass;
-            cancelAction.textContent = settings.cancelText;
+            cancelAction.className          = settings.cancelClass;
+            cancelAction.textContent        = settings.cancelText;
             applyBtnStyles(cancelAction);
 
             /**
@@ -201,8 +204,8 @@
 
             /**
              * Final dialog component
-             * 
-             * message wrap containg title & message appended
+             *
+             * message wrap containing title & message appended
              * action wrap containing buttons appended
              */
             confirmBox.appendChild(messageBox);
@@ -213,13 +216,12 @@
              */
             document.body.appendChild(confirmBox);
 
-            
             /**
              * cancel dialog on backdrop click
              * if cancelOnBackdropClick: true then backdrop click
              * will cancel the dialog action
              */
-            if (settings.cancelOnBackdropClick) {
+            if (toBoolean(settings.cancelOnBackdropClick)) {
                 backdrop.addEventListener('click', function() {
                     settings.onCancel.call(this);
                     document.body.removeChild(confirmBox);
@@ -249,29 +251,35 @@
         }.bind(this));
 
         // this.setAttribute('jc-confirm-attached', 'true');
-
     };
 
+    function toBoolean(strOrBool) {
+        if (strOrBool === true || strOrBool === 'true') {
+            return true;
+        }
+        return false;
+    }
+
     function applyBtnStyles(button) {
-        var bgColor = '#e6e6e6'
-        var bgHoverColor = '#dcdcdc'
-        button.style.backgroundColor = bgColor;
-        button.style.color = '#000000';
-        button.style.border = 'none';
-        button.style.borderRadius = '4px';
-        button.style.padding = '6px 12px';
-        button.style.fontSize = '1rem';
-        button.style.lineHeight = '1.2';
-        button.style.cursor = 'pointer';
-        button.style.transition = 'background-color 0.3s ease';
-    
+        var bgColor             = '#e6e6e6'
+        var bgHoverColor        = '#dcdcdc'
+        button.style.backgroundColor   = bgColor;
+        button.style.color             = '#000000';
+        button.style.border            = 'none';
+        button.style.borderRadius      = '4px';
+        button.style.padding           = '6px 12px';
+        button.style.fontSize          = '1rem';
+        button.style.lineHeight        = '1.2';
+        button.style.cursor            = 'pointer';
+        button.style.transition        = 'background-color 0.3s ease';
+
         /**
          * Add a hover effect using mouseover
          */
         button.addEventListener('mouseover', function() {
             this.style.backgroundColor = bgHoverColor;
         });
-    
+
         /**
          * Add focus out effect using mouseout
          */
@@ -283,6 +291,6 @@
     /**
      * Return the javascriptConfirm function to be used globally or in other environments
      */
-    return Element.prototype.javascriptConfirm;
-
+    return javascriptConfirm;
 }));
+
