@@ -62,6 +62,7 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  font-size: 16px;
   font-weight: 400;
 }
 
